@@ -19,7 +19,7 @@ const HomePage = () => {
           >
             For you
             {feedType === "forYou" && (
-              <div className="absolute bottom-0 w-10  h-1 rounded-full bg-primary"></div>
+              <div className="absolute bottom-0 w-10 h-1 rounded-full bg-primary"></div>
             )}
           </div>
           <div
@@ -37,7 +37,7 @@ const HomePage = () => {
         <CreatePost />
 
         {/* POSTS */}
-        <Posts />
+        <Posts feedType={feedType} />
       </div>
     </>
   );
