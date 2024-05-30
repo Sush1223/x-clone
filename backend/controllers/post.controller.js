@@ -7,23 +7,18 @@ export const createPost = async (req, res) => {
   try {
     const { text } = req.body;
     let { img } = req.body;
-    // converting to string because may req.user is not in a string
     const userId = req.user._id.toString();
+
     const user = await User.findById(userId);
-    if (!user) {
-      return res.status(404).json({
-        error: "User not found",
-      });
-    }
+    if (!user) return res.status(404).json({ message: "User not found" });
+
     if (!text && !img) {
-      return res.status(400).json({
-        error: "Post must have text or image ",
-      });
+      return res.status(400).json({ error: "Post must have text or image" });
     }
 
     if (img) {
-      const uploadedRes = cloudinary.uploader.upload(img);
-      img = uploadedRes.secure_url;
+      const uploadedResponse = await cloudinary.uploader.upload(img);
+      img = uploadedResponse.secure_url;
     }
 
     const newPost = new Post({
@@ -33,10 +28,10 @@ export const createPost = async (req, res) => {
     });
 
     await newPost.save();
-    return res.status(201).json(newPost);
+    res.status(201).json(newPost);
   } catch (error) {
-    res.status(500).json({ error: "Internal Server Error" });
-    console.log("Error in createPost:", error.message);
+    res.status(500).json({ error: "Internal server error" });
+    console.log("Error in createPost controller: ", error);
   }
 };
 
