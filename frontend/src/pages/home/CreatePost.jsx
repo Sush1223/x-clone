@@ -39,6 +39,7 @@ const CreatePost = () => {
     },
 
     onSuccess: () => {
+      //  in order to return the data and get that data we need to pass that data as argument to onSuccess
       setText("");
       setImg(null);
       toast.success("Post created successfully");
