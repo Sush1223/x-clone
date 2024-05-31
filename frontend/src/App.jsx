@@ -60,7 +60,7 @@ function App() {
         />
         4
         <Route
-          path="/profile/:username"
+          path="/profile/:userName"
           element={authUser ? <ProfilePage /> : <Navigate to="/login" />}
         />
       </Routes>
