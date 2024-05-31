@@ -21,7 +21,7 @@ const RightPanel = () => {
     },
   });
 
-  const { isPending, followUnfollowMutation } = useFollow();
+  const { isPending, follow } = useFollow();
 
   if (suggestedUsers?.lenght === 0) {
     return <div className="md:w-64 w-0"></div>;
@@ -68,7 +68,7 @@ const RightPanel = () => {
                     className="btn bg-white text-black hover:bg-white hover:opacity-90 rounded-full btn-sm"
                     onClick={(e) => {
                       e.preventDefault();
-                      followUnfollowMutation(user._id);
+                      followUnfollow(user._id);
                     }}
                   >
                     {isPending ? <LoadingSpinner size="sm" /> : "Follow"}

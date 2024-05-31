@@ -22,7 +22,6 @@ const Sidebar = () => {
         });
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || "Failed to logout");
-        console.log(data);
         return data;
       } catch (error) {
         console.error(errror);
@@ -39,7 +38,6 @@ const Sidebar = () => {
   });
 
   const { data: authUser } = useQuery({ queryKey: ["authUser"] });
-
   return (
     <div className="md:flex-[2_2_0] w-18 max-w-52">
       <div className="sticky top-0 left-0 h-screen flex flex-col border-r border-gray-700 w-20 md:w-full">
@@ -83,7 +81,7 @@ const Sidebar = () => {
           >
             <div className="avatar hidden md:inline-flex">
               <div className="w-8 rounded-full">
-                <img src={authUser?.profileImg || "/avatar-placeholder.png"} />
+                <img src={authUser?.profileImge || "/avatar-placeholder.png"} />
               </div>
             </div>
             <div className="flex justify-between flex-1">
